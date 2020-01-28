@@ -11,7 +11,9 @@ if (!address) {
       return console.log('Error', error);
     }
 
-    forecast(data.latitude, data.longitude, (forecastError, forecastData) => {
+    const { latitude, longitude } = data;
+
+    forecast(latitude, longitude, (forecastError, forecastData) => {
       if (forecastError) {
         console.log('Error', forecastError);
       }
