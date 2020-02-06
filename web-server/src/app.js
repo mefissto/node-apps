@@ -1,27 +1,37 @@
 const path = require('path');
 const express = require('express');
+const hbs = require('hbs');
 
 const app = express();
 const publicDirectoryPath = path.join(__dirname, '../public');
+const viewPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
-app.set('view engine', 'hbs');
-app.use(express.static(publicDirectoryPath));
+app.set('view engine', 'hbs'); // set default templates as hendlebar insted of html
+app.set('views', viewPath); // changing views directory path
+hbs.registerPartials(partialsPath); // defining hbs partials path
+
+app.use(express.static(publicDirectoryPath)); // set default public folder path
 
 app.get('', (req, res) => {
+  // render page from hendlebar and pass some props to use them in template
   res.render('index', {
-    title: 'Weather App'
+    title: 'Weather App',
+    name: 'Serhii Maryniuk'
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'About'
+    title: 'About',
+    name: 'Serhii Maryniuk'
   });
 });
 
 app.get('/help', (req, res) => {
   res.render('help', {
-    title: 'Help'
+    title: 'Help',
+    name: 'Serhii Maryniuk'
   });
 });
 
