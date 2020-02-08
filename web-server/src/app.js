@@ -39,6 +39,22 @@ app.get('/weather', (req, res) => {
   res.send('weater');
 });
 
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    errorMessage: 'Help article not found',
+    name: 'Serhii Maryniuk'
+  });
+});
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    errorMessage: 'My 404 page',
+    name: 'Serhii Maryniuk'
+  });
+});
+
 app.listen(3000, () => {
   console.log('Server is up on port 3000.');
 });
